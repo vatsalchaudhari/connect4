@@ -23,8 +23,11 @@ while (turn <= 42)
     % Uses findRow function to find bottom most row
     row = findRow(col,board_display);
     
-    % The loop iterates while the column is full
-    while (row == false)
+    % Loop iterates while the column is full
+    while (~row)
+        errorMessage = ['Column ', int2str(col), ' is full'];
+        disp(msgbox({errorMessage; 'Try another column'}, 'Error', 'error', 'modal'))
+        
         [~,col] = getInput(my_scene);
         row = findRow(col,board_display);
     end
@@ -40,18 +43,18 @@ while (turn <= 42)
     
     % checks if black has 4 in a row
     if (turn>6 && checkForWin(row,col,board_display) && mod(turn, 2) == 0)
-        disp(msgbox('Black Wins!')); break;
+        disp(msgbox('Black Wins!', 'Game Over')); break;
     % checks if red has 4 in a row
     elseif(turn>6 && checkForWin(row,col,board_display) && mod(turn, 2) ~= 0)
-        disp(msgbox('Red Wins!')); break;
+        disp(msgbox('Red Wins!', 'Game Over')); break;
     end
     
     turn = turn+1; % increments turn by 1
 end
 
-% if there is a tie
+% Checks for tie
 if turn > 42
-    disp(msgbox('You tied.'));
+    disp(msgbox('You both tied.', 'Game Over'));
 end
 
 % This function convert user mouse input to a row and column
