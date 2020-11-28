@@ -64,7 +64,7 @@ function [row,col] = getInput(obj)
     col = ceil(X/obj.sprite_width/obj.zoom);
 end
 
-% This function finds the bottom most empty row in the appropiate column
+% This function finds the bottom most empty row in the appropriate column
 function [row] = findRow(col,board_display)
     % If column is full it returns false
     if(board_display(1, col) ~= 1)
