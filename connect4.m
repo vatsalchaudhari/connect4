@@ -18,10 +18,9 @@ turn = 1; % This variable keeps tracks of turns played
 
 % Loop iterates until there are no empty spaces on the board
 while (turn <= 42)
-    % Uses getInput function to get row and column
-    [~,col] = getInput(my_scene);
-    % Uses findRow function to find bottom most row
-    row = findRow(col,board_display);
+    [~,col] = getInput(my_scene); % Uses getInput function to get row and column
+    sound(1) % plays sound
+    row = findRow(col,board_display); % Uses findRow function to find bottom most row
     
     % Loop iterates while the column is full
     while (~row)
