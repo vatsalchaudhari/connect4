@@ -1,14 +1,11 @@
 clc
 clear
 
-
 % Initialize scene
 my_scene = simpleGameEngine('ConnectFour.png',86,101);
 
 % Set up variables to name the various sprites
-empty_sprite = 1;
-red_sprite = 2;
-black_sprite = 3;
+empty_sprite = 1; red_sprite = 2; black_sprite = 3;
 
 % Display empty board   
 board_display = empty_sprite * ones(6,7);
@@ -19,7 +16,6 @@ turn = 1; % This variable keeps tracks of turns played
 % Loop iterates until there are no empty spaces on the board
 while (turn <= 42)
     [~,col] = getInput(my_scene); % Uses getInput function to get row and column
-    sound(1) % plays sound
     row = findRow(col,board_display); % Uses findRow function to find bottom most row
     
     % Loop iterates while the column is full
@@ -27,7 +23,7 @@ while (turn <= 42)
         errorMessage = ['Column ', int2str(col), ' is full'];
         disp(msgbox({errorMessage; 'Try another column'}, 'Error', 'error', 'modal'))
         
-        [~,col] = getInput(my_scene);
+        [~,col] = getInput(my_scene); % Gets input again
         row = findRow(col,board_display);
     end
     
@@ -53,7 +49,7 @@ end
 
 % Checks for tie
 if turn > 42
-    disp(msgbox('You both tied.', 'Game Over'));
+    disp(msgbox('You tied.', 'Game Over'));
 end
 
 % This function convert user mouse input to a row and column
@@ -79,7 +75,7 @@ function [row] = findRow(col,board_display)
     end
 end
 
-% % This function checks for 4 in a row
+% This function checks for 4 in a row
 function [result] = checkForWin(r,c,board)
     if checkHorizontal(r,board)||checkVertical(c,board)||checkDiagonal1(board)||checkDiagonal2(board)
         result = true;
@@ -113,7 +109,6 @@ function [result] = checkVertical(c,board)
         end
     end
 end
-
 
 % This function checks for a diagonal win (/) positive slope
 function [result] = checkDiagonal1(board)
